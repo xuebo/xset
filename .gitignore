@@ -3,21 +3,7 @@
 # ignore hide files <except .gitignore>
 [.]*
 ![.]gitignore
+![.]xinitrc
 
 # ignore temp files
 *~
-
-#ignore emacs sessions
-session*
-
-# ignore many directories
-emms/
-DouBanMusic/
-ac-comphist.dat
-elpa/
-eshell/
-url/
-
-# ignore frame and tramp temp files
-frame-restore-parameters
-tramp
