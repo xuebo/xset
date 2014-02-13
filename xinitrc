@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 -fF -I-.002 -O-.003 -D1 &
+
+# wall picture
+# xloadimage -onroot -fullscreen Picture/Wallpapers/computer_kuan_275777_18.jpg
+feh --bg-fill Picture/Wallpapers/computer_kuan_275777_18.jpg &
+
+# statusbar
+trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 151 --widthtype pixel --height 20 --transparent true --tint 0x000000 --alpha 0 &
+
+# xsources
+xrdb -merge .Xdefaults &
+
+xrandr --output VGA1 --noprimary --right-of LVDS1 --mode 1920x1080
+
+indicator-china-weather &
+nm-applet &
+gnome-sound-applet &
+
+virtualbox &
+stardict &
+emacs &
+sleep 1
+gnome-terminal --hide-menubar &
+google-chrome &
+
+sleep 1
+thunderbird &
+
+exec xmonad
