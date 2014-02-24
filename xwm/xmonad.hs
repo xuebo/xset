@@ -150,7 +150,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     [((modm, xK_v), spawnSelected defaultGSConfig ["google-chrome"
                                                   ,"xterm","smplayer","gnome-screenshot","emacs"
-                                                  ,"gvim","rhythmbox","software-center","gimp","dia"])
+                                                  ,"gvim","rhythmbox","software-center","gimp","dia"
+                                                  ,"nautilus"])
     , ((modm, xK_g), goToSelected defaultGSConfig)
     ]
 
