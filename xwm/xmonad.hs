@@ -100,7 +100,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- Deincrement the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
- 
+
     -- toggle the status bar gap (used with avoidStruts from Hooks.ManageDocks)
     -- , ((modm , xK_b ), sendMessage ToggleStruts)
  
@@ -151,7 +151,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((modm, xK_v), spawnSelected defaultGSConfig ["google-chrome"
                                                   ,"xterm","smplayer","gnome-screenshot","emacs"
                                                   ,"gvim","rhythmbox","software-center","gimp","dia"
-                                                  ,"nautilus"])
+                                                  ,"nautilus","evince"])
     , ((modm, xK_g), goToSelected defaultGSConfig)
     ]
 
@@ -190,7 +190,7 @@ myManageHook = composeAll . concat $
     myClassPlayerShifts         = ["Smplayer","Rhythmbox"]
     myClassGimpShifts           = ["Gimp","Dia-normal"]
     myClassChatShifts           = ["Pidgin", "Thunderbird"]
-    myClassHideShifts           = ["Stardict"]
+    myClassHideShifts           = ["Stardict", "Gnome-system-monitor"]
 
 gsconfig colorizer = (buildDefaultGSConfig colorizer) { gs_cellheight = 60, gs_cellwidth = 200 }
 -- | A green monochrome colorizer based on window class
