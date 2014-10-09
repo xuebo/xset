@@ -6,11 +6,13 @@ import XMonad.Util.Run(spawnPipe)
 import System.IO
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers(doCenterFloat, (/=?), isInProperty, isFullscreen, (-?>), doFullFloat, composeOne)
 import XMonad.Util.EZConfig
 import Graphics.X11.ExtraTypes.XF86
 
 import XMonad.Actions.GridSelect
     
+import XMonad.Layout.Fullscreen(fullscreenEventHook, fullscreenManageHook, fullscreenFull, fullscreenFloat)
 import XMonad.Layout.NoBorders (smartBorders, noBorders)
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.SimpleFloat
@@ -33,7 +35,7 @@ myFocusedBorderColor = "#ff00ff"
 myWorkspaces = ["main", "emacs", "webdoc", "gimp", "chat", "player", "rdesktop", "vbox", "hide"]
                
 -- myLayout = gaps [(D,16)] $ avoidStruts $ smartBorders tiled ||| smartBorders (Mirror tiled)  ||| noBorders Full ||| smartBorders simpleFloat
-myLayout = avoidStruts $ smartBorders tiled ||| noBorders Full
+myLayout = avoidStruts $ smartBorders tiled ||| noBorders (fullscreenFull Full)
   where
     --tiled = ResizableTall 1 (2/100) (1/2) []
     tiled   = ResizableTall nmaster delta ratio []
@@ -178,10 +180,15 @@ myManageHook = composeAll . concat $
       , [ className =? c --> doF (W.shift "chat")    | c <- myClassChatShifts ]
           -- Applications that go to hide
       , [ className =? c --> doF (W.shift "hide")    | c <- myClassHideShifts ]
+
+      -- , [ composeOne[ isFullscreen -?> doFullFloat ]]
+
+      , [manageDocks]
+
     ] 
     where
     viewShift                   = doF . liftM2 (.) W.greedyView W.shift
-    myClassFloats               = ["Pidgin"]
+    myClassFloats               = ["Pidgin", "Indicator-stickynotes.py"]
     myClassMainShifts           = []
     myClassEmacsShifts          = ["Emacs24"]
     myClassWebShifts            = ["Google-chrome", "Evince"]
@@ -215,10 +222,11 @@ main = do
       , terminal           = myTerminal
       , keys               = myKeys
       , workspaces         = myWorkspaces
-      , manageHook         = manageDocks <+> myManageHook
+      -- , handleEventHook    = docksEventHook <+> fullscreenEventHook
+      , manageHook         = myManageHook <+> fullscreenManageHook
                              <+> manageHook defaultConfig
       -- , layoutHook = avoidStruts  $  layoutHook defaultConfig
-      , layoutHook         = myLayout
+      , layoutHook         = smartBorders $ myLayout
       , logHook     = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 50

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+/usr/bin/xmodmap /home/xb/.xmodmap
+
 gnome-system-monitor &
 
 xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 -fF -I-.002 -O-.003 -D1 &
@@ -15,6 +17,7 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true --expa
 xrdb -merge .Xdefaults &
 
 xrandr --output VGA1 --noprimary --right-of LVDS1 --mode 1920x1080
+
 
 indicator-china-weather &
 nm-applet &
