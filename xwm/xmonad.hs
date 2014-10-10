@@ -212,7 +212,7 @@ greenColorizer = colorRangeFromClassName
 
 -- Run XMonad 
 main = do
-  xmproc <- spawnPipe "/home/xb/.cabal/bin/xmobar /home/xb/.xmonad/xmonbar.hs"
+  xmproc <- spawnPipe "/usr/bin/xmobar /home/xb/.xmonad/xmonbar.hs"
 
   xmonad $ defaultConfig {
       	modMask            = mod1Mask
