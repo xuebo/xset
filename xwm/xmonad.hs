@@ -50,7 +50,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
     -- launch dmenu
-    , ((XMonad.mod4Mask,    xK_f     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((XMonad.mod4Mask,    xK_f     ), spawn "dmenu_run")
  
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
@@ -190,7 +190,7 @@ myManageHook = composeAll . concat $
     viewShift                   = doF . liftM2 (.) W.greedyView W.shift
     myClassFloats               = ["Pidgin", "Indicator-stickynotes.py"]
     myClassMainShifts           = []
-    myClassEmacsShifts          = ["Emacs24"]
+    myClassEmacsShifts          = ["Emacs"]
     myClassWebShifts            = ["Google-chrome", "Evince"]
     myClassRdesktopShifts       = ["rdesktop"]
     myClassVirtualBoxShifts     = ["VirtualBox"]
@@ -212,7 +212,7 @@ greenColorizer = colorRangeFromClassName
 
 -- Run XMonad 
 main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar /home/xb/.xmonad/xmonbar.hs"
+  xmproc <- spawnPipe "/usr/bin/xmobar /home/xb/.xmonad/xmobar.hs"
 
   xmonad $ defaultConfig {
       	modMask            = mod1Mask

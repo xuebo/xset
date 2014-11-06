@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+#exprot zh lang
+#export LANG="en_US.UTF-8"  
+#export LC_CTYPE="zh_CN.UTF-8"  
+export LC_ALL="zh_CN.UTF-8"  
+#export LC_CTYPE="zh_CN.UTF-8"  
+export XMODIFIERS="@im=fcitx"  
+
+PATH=~/bin:~/bin/navicat:$PATH
+
 /usr/bin/xmodmap /home/xb/.xmodmap
 
 gnome-system-monitor &
@@ -12,6 +21,8 @@ feh --bg-fill Picture/Wallpapers/computer_kuan_275777_18.jpg &
 
 # statusbar
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 151 --widthtype pixel --height 20 --transparent true --tint 0x000000 --alpha 0 &
+
+fcitx &  
 
 # xsources
 xrdb -merge .Xdefaults &
