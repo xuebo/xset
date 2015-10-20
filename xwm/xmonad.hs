@@ -47,7 +47,7 @@ myLayout = avoidStruts $ smartBorders tiled ||| noBorders (fullscreenFull Full)
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((mod1Mask .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
     -- launch dmenu
     , ((XMonad.mod4Mask,    xK_f     ), spawn "dmenu_run")
@@ -56,10 +56,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
  
     -- close focused window 
-    , ((modm .|. shiftMask, xK_c     ), kill)
+    , ((mod1Mask .|. shiftMask, xK_c     ), kill)
  
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    , ((mod1Mask,               xK_space ), sendMessage NextLayout)
  
     --  Reset the layouts on the current workspace to default
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
@@ -71,28 +71,28 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_Tab   ), windows W.focusDown)
  
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
+    , ((mod1Mask,               xK_j     ), windows W.focusDown)
  
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ((mod1Mask,               xK_k     ), windows W.focusUp  )
  
     -- Move focus to the master window
     , ((modm,               xK_m     ), windows W.focusMaster  )
  
     -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
+    , ((mod1Mask,               xK_Return), windows W.swapMaster)
  
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ((mod1Mask .|. shiftMask, xK_j     ), windows W.swapDown  )
  
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((mod1Mask .|. shiftMask, xK_k     ), windows W.swapUp    )
  
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    , ((mod1Mask,               xK_h     ), sendMessage Shrink)
  
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
+    , ((mod1Mask,               xK_l     ), sendMessage Expand)
  
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
@@ -215,7 +215,8 @@ main = do
   xmproc <- spawnPipe "/usr/bin/xmobar /home/xb/.xmonad/xmobar.hs"
 
   xmonad $ defaultConfig {
-      	modMask            = mod1Mask
+      -- test mod#Mask use xmodmap command tool.
+      	modMask            = mod4Mask
       , borderWidth        = myBorderWidth
       ,	normalBorderColor  = myNormalBorderColor
       ,	focusedBorderColor = myFocusedBorderColor

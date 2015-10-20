@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+# for mysql-workbench ..
+export GNOME_KEYRING_CONTROL=1;
+
+#set java environment
+export JAVA_HOME='/usr/local/jdk'
+export JRE_HOME=/usr/local/jdk/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+
 #exprot zh lang
 #export LANG="en_US.UTF-8"  
 #export LC_CTYPE="zh_CN.UTF-8"  
@@ -11,16 +20,16 @@ PATH=~/bin:~/bin/navicat:$PATH
 
 /usr/bin/xmodmap /home/xb/.xmodmap
 
-gnome-system-monitor &
+#gnome-system-monitor &
 
 xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 -fF -I-.002 -O-.003 -D1 &
 
 # wall picture
 # xloadimage -onroot -fullscreen Picture/Wallpapers/computer_kuan_275777_18.jpg
-feh --bg-fill Picture/Wallpapers/computer_kuan_275777_18.jpg &
+# feh --bg-fill Picture/Wallpapers/computer_kuan_275777_18.jpg &
 
 # statusbar
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 151 --widthtype pixel --height 20 --transparent true --tint 0x000000 --alpha 0 &
+# trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 151 --widthtype pixel --height 20 --transparent true --tint 0x000000 --alpha 0 &
 
 fcitx &  
 
@@ -30,13 +39,13 @@ xrdb -merge .Xdefaults &
 xrandr --output VGA1 --noprimary --right-of LVDS1 --mode 1920x1080
 
 
-indicator-china-weather &
-nm-applet &
-gnome-sound-applet &
+# indicator-china-weather &
+# nm-applet &
+# gnome-sound-applet &
 
-virtualbox &
-stardict &
-emacs &
+# virtualbox &
+# stardict &
+# emacs &
 
 sleep 1
 
@@ -45,6 +54,8 @@ google-chrome &
 
 sleep 1
 
-thunderbird &
+# thunderbird &
 
-exec xmonad
+#exec xmonad
+
+exec startxfce4
